@@ -1,0 +1,57 @@
+:root {
+    --one: #005533;
+    --two: #002a19;
+    --three: #00804c;
+    --four: #00ff98;
+}
+
+.App {
+    text-align: center;
+    /* background-color: var(--one); */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: url(./images/background1.jpg);
+    background-size: cover;
+}
+
+.title-container {
+    padding: 20px;
+    background-color: #484848;
+    color: #f2f2f2;
+}
+
+.predictioncontainer {
+    width: 1200px;
+    height: 250px;
+    margin: auto;
+    margin-top: 200px;
+    /* background-image: url(./images/background1.jpg); */
+    /* background-size: cover; */
+    /* height: 300px; */
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 0 solid rgba(18, 72, 107, 0.68);
+    border-radius: 2px;
+    box-shadow: 3px 3px 12px -4px rgba(0, 0, 0, 0.84);
+}
+
+.predictioncontainer-form {
+    display: flex;
+}
+
+.form-item {
+    flex-direction: column;
+    padding: 10px;
+}
+
+.prediction-button {
+    color: black;
+    padding: 20px;
+    font-size: 20px;
+    /* border-radius: 3px;; */
+}
+
+.prediction-amount {
+    padding: 20px;
+    font-size: 30px;
+}
