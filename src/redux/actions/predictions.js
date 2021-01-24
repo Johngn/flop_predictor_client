@@ -10,7 +10,7 @@ export const setPredictionLoading = () => {
 
 export const getOptions = () => dispatch => {
     axios
-        .get("http://localhost:5000/get_options")
+        .get("https://flask-flop-predictor.herokuapp.com")
         .then(res => dispatch({ type: GET_OPTIONS, payload: res.data }));
 };
 
@@ -27,19 +27,20 @@ export const getPrediction = params => dispatch => {
     formData.append("avg_vote", params.score);
 
     axios
-        .post("http://localhost:5000/predict_boxoffice", formData, {
-            headers: {
-                "Content-Type": "multipart/form-data",
-            },
-        })
-        .then(res =>
-            dispatch(
-                {
-                    type: GET_PREDICTION,
-                    payload: res.data,
+        .post(
+            "https://flask-flop-predictor.herokuapp.com/predict_boxoffice",
+            formData,
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data",
                 },
-                console.log(res.data)
-            )
+            }
+        )
+        .then(res =>
+            dispatch({
+                type: GET_PREDICTION,
+                payload: res.data,
+            })
         );
 };
 

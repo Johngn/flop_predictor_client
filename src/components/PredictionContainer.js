@@ -20,8 +20,6 @@ class PredictionContainer extends Component {
     }
 
     onChange = e => {
-        console.log(e.target.value);
-
         this.setState({ [e.target.name]: e.target.value });
     };
 
@@ -35,7 +33,6 @@ class PredictionContainer extends Component {
             score: this.state.score,
         };
 
-        console.log(params);
         this.props.getPrediction(params);
     };
 
