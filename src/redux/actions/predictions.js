@@ -10,11 +10,7 @@ export const setPredictionLoading = () => {
 
 export const getOptions = () => dispatch => {
   axios
-    .get(
-      process.env.NODE_ENV === 'development'
-        ? process.env.REACT_APP_API_URL_DEVELOPMENT
-        : process.env.REACT_APP_API_URL_PRODUCTION
-    )
+    .get(process.env.REACT_APP_API_URL)
     .then(res => dispatch({ type: GET_OPTIONS, payload: res.data }))
     .catch(err => console.log(err));
 };
@@ -32,19 +28,11 @@ export const getPrediction = params => dispatch => {
   formData.append('avg_vote', params.score);
 
   axios
-    .post(
-      `${
-        process.env.NODE_ENV === 'development'
-          ? process.env.REACT_APP_API_URL_DEVELOPMENT
-          : process.env.REACT_APP_API_URL_PRODUCTION
-      }/predict_boxoffice`,
-      formData,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      }
-    )
+    .post(`${process.env.REACT_APP_API_URL}/predict_boxoffice`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
     .then(res =>
       dispatch({
         type: GET_PREDICTION,
