@@ -11,10 +11,9 @@ export const setPredictionLoading = () => {
 export const getOptions = () => dispatch => {
   axios
     .get(
-      process.env.REACT_APP_API_URL_PRODUCTION
-      // process.env.NODE_ENV === 'development'
-      //     ? process.env.REACT_APP_API_URL_DEVELOPMENT
-      //     : process.env.REACT_APP_API_URL_PRODUCTION
+      process.env.NODE_ENV === 'development'
+        ? process.env.REACT_APP_API_URL_DEVELOPMENT
+        : process.env.REACT_APP_API_URL_PRODUCTION
     )
     .then(res => dispatch({ type: GET_OPTIONS, payload: res.data }))
     .catch(err => console.log(err));
@@ -35,10 +34,9 @@ export const getPrediction = params => dispatch => {
   axios
     .post(
       `${
-        process.env.REACT_APP_API_URL_PRODUCTION
-        // process.env.NODE_ENV === 'development'
-        //   ? process.env.REACT_APP_API_URL_DEVELOPMENT
-        // : process.env.REACT_APP_API_URL_PRODUCTION
+        process.env.NODE_ENV === 'development'
+          ? process.env.REACT_APP_API_URL_DEVELOPMENT
+          : process.env.REACT_APP_API_URL_PRODUCTION
       }/predict_boxoffice`,
       formData,
       {
