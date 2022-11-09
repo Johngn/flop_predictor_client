@@ -5,6 +5,11 @@
   --four: #00ff98;
 }
 
+.initial-loading-container {
+  padding: 20px;
+  margin-top: 10px;
+}
+
 .App {
   text-align: center;
   height: 100vh;
@@ -71,6 +76,7 @@
   margin-top: 20px;
   padding: 20px;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .prediction-amount {
