@@ -113,24 +113,35 @@ class PredictionContainer extends Component {
                             onChange={this.onChange}
                         /> */}
           </form>
-          <button className="prediction-button" onClick={this.getPrediction}>
-            Get Prediction
-          </button>
+          {this.props.initialLoading ? (
+            <div className="initial-loading-container">
+              Please wait while the model loads. This may take a few moments.
+            </div>
+          ) : (
+            <button
+              disabled={this.props.loading || this.props.initialLoading}
+              className="prediction-button"
+              onClick={this.getPrediction}
+            >
+              Get Prediction
+            </button>
+          )}
+
           {this.props.loading ? (
             <Spinner />
           ) : estimated_boxoffice ? (
             <div className="prediction-amount">
               {parseInt(parseFloat(estimated_boxoffice)) > 1e7 ? (
                 <span>
-                  $ {parseInt(parseInt(parseFloat(estimated_boxoffice) / 1e6))}{' '}
+                  $ {parseInt(parseInt(parseFloat(estimated_boxoffice) / 1e6))}{" "}
                   million
                 </span>
               ) : (
-                <span style={{ color: 'red' }}>&darr; $ 10 million</span>
+                <span style={{ color: "red" }}>&darr; $ 10 million</span>
               )}
             </div>
           ) : (
-            ''
+            ""
           )}
         </div>
       </div>
@@ -144,12 +155,14 @@ PredictionContainer.propTypes = {
   options: PropTypes.object.isRequired,
   prediction: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
+  initialLoading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
   options: state.predictions.options,
   prediction: state.predictions.prediction,
   loading: state.predictions.loading,
+  initialLoading: state.predictions.initialLoading,
 });
 
 export default connect(mapStateToProps, { getOptions, getPrediction })(

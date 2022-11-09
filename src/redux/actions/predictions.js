@@ -1,4 +1,4 @@
-import { PREDICTION_LOADING, GET_PREDICTION, GET_OPTIONS } from './types';
+import { PREDICTION_LOADING, GET_PREDICTION, GET_OPTIONS, OPTIONS_LOADING } from './types';
 import axios from 'axios';
 import FormData from 'form-data';
 
@@ -8,7 +8,14 @@ export const setPredictionLoading = () => {
   };
 };
 
+export const setOptionsLoading = () => {
+  return {
+    type: OPTIONS_LOADING,
+  };
+};
+
 export const getOptions = () => dispatch => {
+  dispatch(setOptionsLoading());
   axios
     .get(process.env.REACT_APP_API_URL)
     .then(res => dispatch({ type: GET_OPTIONS, payload: res.data }))
